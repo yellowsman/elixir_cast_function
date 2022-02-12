@@ -54,7 +54,7 @@ defmodule ElixirCastFunction do
                     |> Map.get("nodes", []) 
                     |> Enum.map(fn x -> Map.get(x, "id") end)
                     } end)
-                    |> Enum.map(fn {id, funs} -> {id, Enum.filter(funs, fn x -> String.starts_with?(x, ["to", "from"]) end)}end)  # to/from を含んだモジュールを探す
+                    |> Enum.map(fn {id, funs} -> {id, Enum.filter(funs, fn x -> String.contains?(x, ["to_", "from"]) end)}end)  # to/from を含んだモジュールを探す
                     |> Enum.filter(fn {_, x} -> length(x) > 0 end) # to/fromを持つリストだけ取り出す
   end
 
